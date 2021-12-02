@@ -42,7 +42,7 @@ jobs:
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
       - name: notificate on failure
-        if: github.event_name == 'push' && steps.deploy.outcome == 'failure'
+        if: ${{ failure() && github.event_name == 'push' }}
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
